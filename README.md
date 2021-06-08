@@ -35,12 +35,23 @@ Install nodemon in order to have automatic reload
 npm i --save-dev nodemon
 ```
 
+> :warning: ** nodemon doesnt support ES6 modules from scratch **
+
+ES6 is not yet supported by nodemon runtime by default (ESModules supported since node 14). You can integrate it like this to nodemon:
+
+```
+npm i esm && npm i -D nodemon
+```
+
+In your package.json, add this to scripts:
+
+```
+"start:dev": "nodemon -r esm app.js"
+```
+
 Create a sensors.js file in order to put all controller logic. Create your route inside using Express Router object.
 
 Load routing from sensors.js in your app.js main file
 
-You can create a commande to launch app via nodemon
+> :warning: **if you generate your project from scratch, dont forget to use body parser middleware to allow node to ready body correctly for your json post request ** (see http://expressjs.com/en/resources/middleware/body-parser.html)
 
-```
-npm run start:dev
-```
